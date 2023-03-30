@@ -4,7 +4,14 @@ const mustacheExpress = require("mustache-express");
 const session = require("express-session");
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
+const registerLoginRoutes = require("./routes/register-login");
+const chatroomRoutes = require("./routes/chatroom");
 const mongoose = require("mongoose");
+require("dotenv").config();
+
+app.use("/", registerLoginRoutes);
+
+app.use("/", chatroomRoutes);
 
 app.use(express.static("js"));
 
