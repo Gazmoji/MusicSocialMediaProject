@@ -8,6 +8,7 @@ const registerLoginRoutes = require("./routes/register-login");
 const chatroomRoutes = require("./routes/chatroom");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const path = require("path");
 
 app.use("/", registerLoginRoutes);
 
@@ -32,6 +33,22 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.get("/chat", (req, res) => {
+  res.sendFile(path.join(__dirname, "/chatroom.html"));
+});
+
+let chatroomMessages = [];
+
+io.on("connection", (socket) => {
+  console.log("You have connected...");
+  io.emit("General-Joined", chatroomMessages);
+
+  socket.on("General", (chat) => {
+    chatroomMessages.push(chat);
+    io.emit("General", chat);
+  });
+});
 
 http.listen(process.env.PORT, () => {
   console.log("Server is running...");
