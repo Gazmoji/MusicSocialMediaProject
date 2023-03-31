@@ -9,8 +9,9 @@ const chatroomRoutes = require("./routes/chatroom");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const bcrypt = require('bcryptjs')
+const User = require('./schemas/user')
 
-mongoose.connect('mongodb+srv://soundproofapp:<password>@soundproof.gsxwsfd.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://soundproofapp:D3CEoDFJByG592MN@soundproof.gsxwsfd.mongodb.net/?retryWrites=true&w=majority')
 .then(() => {
     console.log('DB connected')
 }).catch((error) => {
@@ -64,6 +65,26 @@ app.post('/register-user', async (req, res) => {
 
   await user.save()
   res.redirect("/register");
+})
+
+app.post('/login', async (req, res) => {
+  const username = req.body.username
+  const password = req.body.password
+
+  let user = await User.findOne({username: username})
+  if(user) {
+    const result = await bcrypt.compare(password, user.password) 
+    if(result) {
+      if (req.session) {
+        req.session.userid = user._id
+      }
+      res.redirect('/chatroom')
+    } else {
+      res.redirect('/register', {errorMessage: 'Invalid Login.'})
+    }
+  } else {
+    res.redirect('/register', {errorMessage: 'Invalid Login.'})
+  }
 })
 
 http.listen(process.env.PORT, () => {
