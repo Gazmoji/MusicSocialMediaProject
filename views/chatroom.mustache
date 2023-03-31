@@ -4,9 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="chatroomdir.css" />
     <title>SoundProof Chatroom</title>
 </head>
 <body>
-    <a href='/chat'>Click to join chatroom</a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">SoundProof (fontawesome)</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Profile</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Chatrooms
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Miley Cyrus</a></li>
+             <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">The Weeknd</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">100 gecs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<h2>This Week's Top Artists:</h2>
+<h3>Miley Cyrus</h3>
+    <a href='/chatMiley'>
+    <img src ="https://i.scdn.co/image/ab67616d00001e0258039b5147731b6e52202e46" id='image'>
+    </a>
+    <p><b>Click the image above to join the Miley Cyrus Chatroom.</p></b>
+    <p><b>The pop singer’s self-helpy new single illustrates how her music often doesn’t match her star power.</p></b>
+
+<h3>The Weeknd</h3>
+      <a href='/chatWeeknd'>
+    <img src ="https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png" id='image'>
+    </a>
+    <p><b>Click the image above to join The Weeknd Chatroom.</b></p>
+<p><b>In the United States, "Blinding Lights" topped the Billboard Hot 100 for four weeks, and went on to set new records as the song with most weeks spent in the top 5 and top 10,</b></p>
+<p><b> as well as the first song to hold a spot in the top 10 on the chart for an entire year.</b></p>
+
+<h3>100 gecs</h3>
+<a href='/chatGecs'>
+    <img src ="https://f4.bcbits.com/img/a2604863078_10.jpg" width='325px' id='image'>
+    </a>
+    <p><b>Click the image above to join the 100 gecs Chatroom.</b></p>
+    <p><b>100 gecs is the premire artists for the newly popular "hyperpop" genre. Popular with younger crowds but generally not with older generations, 100 gecs has made a large splash on the music charts!</p></b>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </body>
+
 </html>

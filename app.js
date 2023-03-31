@@ -34,18 +34,26 @@ app.use(
   })
 );
 
-app.get("/chat", (req, res) => {
+app.get("/chatMiley", (req, res) => {
   res.sendFile(path.join(__dirname, "/chatroom.html"));
 });
 
-let chatroomMessages = [];
+app.get("/chatWeeknd", (req, res) => {
+  res.sendFile(path.join(__dirname, "/chatroom.html"));
+});
+
+app.get("/chatGecs", (req, res) => {
+  res.sendFile(path.join(__dirname, "/chatroom.html"));
+});
+
+let chatMessages = [];
 
 io.on("connection", (socket) => {
   console.log("You have connected...");
-  io.emit("General-Joined", chatroomMessages);
+  io.emit("General-Joined", chatMessages);
 
   socket.on("General", (chat) => {
-    chatroomMessages.push(chat);
+    chatMessages.push(chat);
     io.emit("General", chat);
   });
 });
