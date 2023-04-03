@@ -3,6 +3,7 @@ const chatMessageTextBox = document.getElementById("chatMessageTextBox");
 const sendMessageButton = document.getElementById("sendMessageButton");
 const messagesUL = document.getElementById("messagesUL");
 const timeRightSpan = document.querySelector(".time-right");
+const userCountElement = document.getElementById("userCount");
 const currentTime = new Date().toLocaleTimeString();
 timeRightSpan.textContent = currentTime;
 const currentUser = document.cookie.replace(
@@ -24,20 +25,31 @@ getBackButton.addEventListener("click", () => {
   };
 });
 
+socket.on("userCount", (count) => {
+  userCountElement.textContent = count;
+});
+
 sendMessageButton.addEventListener("click", () => {
   const chatMessage = chatMessageTextBox.value;
   socket.emit("General", { username: currentUser, message: chatMessage });
 });
 
 socket.on("General-Joined", (chatMessages) => {
+  const currentTime = new Date().toLocaleTimeString();
   const chatMessagesItems = chatMessages.map((chatMessage) => {
-    return `<li>${chatMessage.username}: ${chatMessage.message}</li>`;
+    return `<li>${chatMessage.username}: ${chatMessage.message}<span class="time-right">${currentTime}</span></li>`;
   });
 
   messagesUL.innerHTML = chatMessagesItems.join("");
 });
 
 socket.on("General", (chat) => {
-  const chatMessageLI = `<li>${chat.username}: ${chat.message}</li>`;
-  messagesUL.insertAdjacentHTML("beforeend", chatMessageLI);
+  const currentTime = new Date().toLocaleTimeString();
+  let chatMessageli = "";
+  if (chat.username === currentUser) {
+    chatMessageli = `<li class='container'>${chat.username}: ${chat.message}<span class="time-right">${currentTime}</span></li>`;
+  } else {
+    chatMessageli = `<li class='container-darker'>${chat.username}: ${chat.message}<span class="time-right">${currentTime}</span></li>`;
+  }
+  messagesUL.insertAdjacentHTML("beforeend", chatMessageli);
 });
