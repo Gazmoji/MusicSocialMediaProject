@@ -63,6 +63,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
 app.post("/register-user", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -76,7 +80,7 @@ app.post("/register-user", async (req, res) => {
   });
 
   await user.save();
-  res.redirect("/register");
+  res.redirect("/login");
 });
 
 let chatMessages = [];
@@ -92,13 +96,13 @@ io.on("connection", (socket) => {
 });
 let currentUser = "";
 
-app.post("/login", async (req, res) => {
+app.post("/login-user", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  let user = User.findOne({ username: username });
+  let user = await User.findOne({ username: username });
   if (user) {
-    const result = bcrypt.compare(password, user.password);
+    const result = await bcrypt.compare(password, user.password);
     if (result) {
       if (req.session) {
         req.session.userid = user._id;
@@ -106,10 +110,10 @@ app.post("/login", async (req, res) => {
       currentUser = username;
       res.redirect("/chatroom");
     } else {
-      res.render("register", { errorMessage: "Invalid Login." });
+      res.render("login", { errorMessage: "Invalid Login." });
     }
   } else {
-    res.render("register", { errorMessage: "Invalid Login." });
+    res.render("login", { errorMessage: "Invalid Login." });
   }
 });
 

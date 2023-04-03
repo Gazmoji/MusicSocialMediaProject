@@ -12,21 +12,22 @@
     <h1><i class="fa-solid fa-headphones" style="color: #b5b71f;"></i>
     <b style="color: #b5b71f;" id='logo'>SoundProof</b></h1>
     <br>
-    
     {{errorMessage}}
 
-   
-    <form method = "POST" action = "/register-user">
-<div class="position-absolute top-50 start-50 translate-middle" style="width: 200px;">
-     <h1>REGISTER</h1>
-    <label for="formGroupInput" class="form-label ">Username</label>
-    <input type = "text" class="form-control" name = "username" placeholder = "username">
-
-
+    <form method = "POST" action = "/login-user">
+ <div class="position-absolute top-50 start-50 translate-middle" style="width: 200px;">
+     <h1>LOG IN</h1>
+     <label for="formGroupInput" class="form-label ">Username</label>
+    <input type = "text" name = "username" placeholder = "username">
     <label for="formGroupInput" class="form-label">Password</label>
-    <input type = "password" class="form-control" name = "password">
-    <button>Register</button>
+    <input type = "password" name = "password">
+    <br>
+    <button class = "btn btn-primary">Log In</button>
+    <br>
+    <a href = "/register">Not a user? Sign up here!</a>
 </div>
-    </form>  
+    </form>
+    
+
 </body>
 </html>
