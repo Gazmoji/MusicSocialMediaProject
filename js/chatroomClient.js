@@ -2,6 +2,13 @@ const getBackButton = document.getElementById("goBackButton");
 const chatMessageTextBox = document.getElementById("chatMessageTextBox");
 const sendMessageButton = document.getElementById("sendMessageButton");
 const messagesUL = document.getElementById("messagesUL");
+const timeRightSpan = document.querySelector(".time-right");
+const currentTime = new Date().toLocaleTimeString();
+timeRightSpan.textContent = currentTime;
+const currentUser = document.cookie.replace(
+  /(?:(?:^|.*;\s*)currentUser\s*\=\s*([^;]*).*$)|^.*$/,
+  "$1"
+);
 
 getBackButton.addEventListener("click", () => {
   const xhr = new XMLHttpRequest();

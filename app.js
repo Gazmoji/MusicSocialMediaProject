@@ -63,9 +63,14 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+<<<<<<< HEAD
 app.get("/login", (req, res) => {
   res.render("login");
 });
+=======
+let chatMessages = [];
+let currentUser = "";
+>>>>>>> a7e5c76fd700d0c7754ccca68ab88a65ea6bc34b
 
 app.post("/register-user", async (req, res) => {
   const username = req.body.username;
@@ -83,18 +88,20 @@ app.post("/register-user", async (req, res) => {
   res.redirect("/login");
 });
 
-let chatMessages = [];
-
 io.on("connection", (socket) => {
   console.log("You have connected...");
-  io.emit("General-Joined", chatMessages);
+  socket.emit("General-Joined", chatMessages);
+
+  socket.broadcast.emit("General", {
+    username: "Server",
+    message: `${socket.username} has joined the chatroom`,
+  });
 
   socket.on("General", (chat) => {
     chatMessages.push(chat);
     io.emit("General", chat);
   });
 });
-let currentUser = "";
 
 app.post("/login-user", async (req, res) => {
   const username = req.body.username;
@@ -107,7 +114,8 @@ app.post("/login-user", async (req, res) => {
       if (req.session) {
         req.session.userid = user._id;
       }
-      currentUser = username;
+      res.cookie("currentUser", username);
+
       res.redirect("/chatroom");
     } else {
       res.render("login", { errorMessage: "Invalid Login." });
