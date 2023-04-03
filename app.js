@@ -43,6 +43,17 @@ app.use(
   })
 );
 
+app.get("/chatMiley", (req, res) => {
+  res.sendFile(path.join(__dirname, "/chatroom.html"));
+});
+
+app.get("/chatWeeknd", (req, res) => {
+  res.sendFile(path.join(__dirname, "/chatroom.html"));
+});
+
+app.get("/chatGecs", (req, res) => {
+  res.sendFile(path.join(__dirname, "/chatroom.html"));
+});
 
 
 
@@ -63,13 +74,23 @@ app.post('/register-user', async (req, res) => {
     password: hashedPassword
   })
 
+let chatMessages = [];
   await user.save()
   res.redirect("/register");
 })
 
+io.on("connection", (socket) => {
+  console.log("You have connected...");
+  io.emit("General-Joined", chatMessages);
 app.post('/login', async (req, res) => {
   const username = req.body.username
   const password = req.body.password
+
+  socket.on("General", (chat) => {
+    chatMessages.push(chat);
+    io.emit("General", chat);
+  });
+});
 
   let user = await User.findOne({username: username})
   if(user) {

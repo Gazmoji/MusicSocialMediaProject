@@ -4,16 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="chatroom.css" />
     <title>Soundproof Chatroom</title>
   </head>
   <body>
-    <h2>Welcome to the Chatroom!</h2>
-
+    <h2 class=>Welcome to the Chatroom!</h2>
+    <p>Total Number of users online: <span id="userCount">0</span></p>
     <button id="goBackButton">Click here to go back</button>
-    <script src="app.js"></script>
+    <input type="text" id="chatMessageTextBox" />
+    <button id="sendMessageButton">Send</button>
+    <div class="container">
+      <img src="/w3images/bandmember.jpg" alt="Avatar" />
+      <ul id="messagesUL"></ul>
+      <span class="time-right">11:00</span>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
     <script>
       let socket = io();
     </script>
-    <script src="./js/chatroomClient.js"></script>
+    <script src="chatroomClient.js"></script>
   </body>
 </html>
