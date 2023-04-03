@@ -80,10 +80,10 @@ app.post('/login', async (req, res) => {
       }
       res.redirect('/chatroom')
     } else {
-      res.redirect('/register', {errorMessage: 'Invalid Login.'})
+      res.render('register', {errorMessage: 'Invalid Login.'})
     }
   } else {
-    res.redirect('/register', {errorMessage: 'Invalid Login.'})
+    res.render('register', {errorMessage: 'Invalid Login.'})
   }
 })
 
