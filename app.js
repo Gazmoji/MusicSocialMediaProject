@@ -63,6 +63,9 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+let chatMessages = [];
+let currentUser = "";
+
 app.post("/register-user", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -79,31 +82,34 @@ app.post("/register-user", async (req, res) => {
   res.redirect("/register");
 });
 
-let chatMessages = [];
-
 io.on("connection", (socket) => {
   console.log("You have connected...");
-  io.emit("General-Joined", chatMessages);
+  socket.emit("General-Joined", chatMessages);
+
+  socket.broadcast.emit("General", {
+    username: "Server",
+    message: `${socket.username} has joined the chatroom`,
+  });
 
   socket.on("General", (chat) => {
     chatMessages.push(chat);
     io.emit("General", chat);
   });
 });
-let currentUser = "";
 
 app.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  let user = User.findOne({ username: username });
+  let user = await User.findOne({ username: username });
   if (user) {
     const result = bcrypt.compare(password, user.password);
     if (result) {
       if (req.session) {
         req.session.userid = user._id;
       }
-      currentUser = username;
+      res.cookie("currentUser", username);
+
       res.redirect("/chatroom");
     } else {
       res.render("register", { errorMessage: "Invalid Login." });
