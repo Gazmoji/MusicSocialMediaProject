@@ -18,3 +18,11 @@ h3 {
 p {
   margin-left: 20px;
 }
+#logo {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.navbar {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAqJhlnelhh23e5Kv0P4fvArZpoIFghdZcznkNDLllyN21WfA2Kx1z0ivOb-6Qio93aTE&usqp=CAU");
+  background-repeat: repeat;
+}

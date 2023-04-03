@@ -19,18 +19,18 @@ getBackButton.addEventListener("click", () => {
 
 sendMessageButton.addEventListener("click", () => {
   const chatMessage = chatMessageTextBox.value;
-  socket.emit("General", { message: chatMessage });
+  socket.emit("General", { username: currentUser, message: chatMessage });
 });
 
 socket.on("General-Joined", (chatMessages) => {
   const chatMessagesItems = chatMessages.map((chatMessage) => {
-    return `<li>${chatMessage.message}</li>`;
+    return `<li>${chatMessage.username}: ${chatMessage.message}</li>`;
   });
 
   messagesUL.innerHTML = chatMessagesItems.join("");
 });
 
 socket.on("General", (chat) => {
-  const chatMessageLI = `<li>${chat.message}</li>`;
+  const chatMessageLI = `<li>${chat.username}: ${chat.message}</li>`;
   messagesUL.insertAdjacentHTML("beforeend", chatMessageLI);
 });

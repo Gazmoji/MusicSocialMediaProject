@@ -8,16 +8,20 @@ const registerLoginRoutes = require("./routes/register-login");
 const chatroomRoutes = require("./routes/chatroom");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const bcrypt = require('bcryptjs')
-const User = require('./schemas/user')
+const bcrypt = require("bcryptjs");
+const User = require("./schemas/user");
+const path = require("path");
 
-mongoose.connect('mongodb+srv://soundproofapp:D3CEoDFJByG592MN@soundproof.gsxwsfd.mongodb.net/?retryWrites=true&w=majority')
-.then(() => {
-    console.log('DB connected')
-}).catch((error) => {
-    console.log(error)
-})
-
+mongoose
+  .connect(
+    "mongodb+srv://soundproofapp:D3CEoDFJByG592MN@soundproof.gsxwsfd.mongodb.net/?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("DB connected");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 app.use("/", registerLoginRoutes);
 
@@ -55,58 +59,59 @@ app.get("/chatGecs", (req, res) => {
   res.sendFile(path.join(__dirname, "/chatroom.html"));
 });
 
+app.get("/register", (req, res) => {
+  res.render("register");
+});
 
+app.post("/register-user", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
 
-
-app.get('/register', (req, res) => {
-  res.render('register')
-})
-
-app.post('/register-user', async (req, res) => {
-  const username = req.body.username
-  const password = req.body.password
-
-  let salt = await bcrypt.genSalt(10)
-  let hashedPassword = await bcrypt.hash(password, salt)
+  let salt = await bcrypt.genSalt(10);
+  let hashedPassword = await bcrypt.hash(password, salt);
 
   const user = new User({
     username: username,
-    password: hashedPassword
-  })
+    password: hashedPassword,
+  });
+
+  await user.save();
+  res.redirect("/register");
+});
 
 let chatMessages = [];
-  await user.save()
-  res.redirect("/register");
-})
 
 io.on("connection", (socket) => {
   console.log("You have connected...");
   io.emit("General-Joined", chatMessages);
-app.post('/login', async (req, res) => {
-  const username = req.body.username
-  const password = req.body.password
 
   socket.on("General", (chat) => {
     chatMessages.push(chat);
     io.emit("General", chat);
   });
 });
+let currentUser = "";
 
-  let user = await User.findOne({username: username})
-  if(user) {
-    const result = await bcrypt.compare(password, user.password) 
-    if(result) {
+app.post("/login", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  let user = User.findOne({ username: username });
+  if (user) {
+    const result = bcrypt.compare(password, user.password);
+    if (result) {
       if (req.session) {
-        req.session.userid = user._id
+        req.session.userid = user._id;
       }
-      res.redirect('/chatroom')
+      currentUser = username;
+      res.redirect("/chatroom");
     } else {
-      res.render('register', {errorMessage: 'Invalid Login.'})
+      res.render("register", { errorMessage: "Invalid Login." });
     }
   } else {
-    res.render('register', {errorMessage: 'Invalid Login.'})
+    res.render("register", { errorMessage: "Invalid Login." });
   }
-})
+});
 
 http.listen(process.env.PORT, () => {
   console.log("Server is running...");
