@@ -63,14 +63,13 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-<<<<<<< HEAD
+
 app.get("/login", (req, res) => {
   res.render("login");
 });
-=======
+
 let chatMessages = [];
 let currentUser = "";
->>>>>>> a7e5c76fd700d0c7754ccca68ab88a65ea6bc34b
 
 app.post("/register-user", async (req, res) => {
   const username = req.body.username;
