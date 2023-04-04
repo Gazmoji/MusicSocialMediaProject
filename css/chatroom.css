@@ -1,3 +1,18 @@
+body {
+  background-image: url("https://image.slidesdocs.com/responsive-images/background/business-film-pastel-yellow-abstract-soft-powerpoint-background_6ba43e6878__960_540.jpg");
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 1em;
+}
+
+#goBackButton {
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
 .container {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
@@ -14,9 +29,47 @@
   border-radius: 50%;
 }
 
+.container-darker {
+  border: 2px solid #dedede;
+  background-color: darkgrey;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
 .time-right {
   float: right;
   color: #aaa;
+}
+button {
+  padding: 10px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0069d9;
+}
+#chatborder {
+  border-style: solid;
+  background-color: #d2d899;
+  border-width: 3px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  padding-left: 15px;
+  border-radius: 15px;
+}
+
+#sendText {
+  text-align: right;
 }
 
 .navbar {
@@ -30,4 +83,13 @@
 
 #messagesUL {
   list-style: none;
+}
+
+#userCount {
+  font-weight: bold;
+}
+
+#totalUsers {
+  text-align: center;
+  font-size: larger;
 }

@@ -63,13 +63,13 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
 let chatMessages = [];
 let currentUser = "";
+let userCount = 0;
 
 app.post("/register-user", async (req, res) => {
   const username = req.body.username;
@@ -90,15 +90,22 @@ app.post("/register-user", async (req, res) => {
 io.on("connection", (socket) => {
   console.log("You have connected...");
   socket.emit("General-Joined", chatMessages);
+  userCount++;
+  io.emit("userCount", userCount);
 
   socket.broadcast.emit("General", {
     username: "Server",
-    message: `${socket.username} has joined the chatroom`,
+    message: `A new user has joined the chatroom!`,
+    currentTime: new Date().toLocaleTimeString(),
   });
 
   socket.on("General", (chat) => {
     chatMessages.push(chat);
     io.emit("General", chat);
+  });
+  socket.on("disconnect", () => {
+    userCount--;
+    io.emit("userCount", userCount);
   });
 });
 
