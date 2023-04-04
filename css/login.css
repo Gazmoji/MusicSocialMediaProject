@@ -29,3 +29,8 @@ body {
     margin-top: 5px;
     margin-bottom: 8px;
 }
+
+#logo {
+    font-family: "Courier New", Courier, monospace;
+  }
+  

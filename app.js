@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const User = require("./schemas/user");
+const UserPost = require('./schemas/userpost')
 const path = require("path");
 
 mongoose
@@ -66,6 +67,12 @@ app.get("/register", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
+
+//need to async await
+app.get('/dashboard', (req, res) => {
+  const userposts =  UserPost.find({})
+  res.render('dashboard', {userposts: userposts})
+})
 
 let chatMessages = [];
 let currentUser = "";
@@ -130,6 +137,20 @@ app.post("/login-user", async (req, res) => {
     res.render("login", { errorMessage: "Invalid Login." });
   }
 });
+
+app.post('/add-post', async (req,res) => {
+  const postTitle = req.body.postTitle
+  const postBody = req.body.postBody
+  const postDate = req.body.postDate
+
+  const userpost = new UserPost({
+    postTitle: postTitle,
+    postBody: postBody,
+    postDate: postDate
+  })
+  await userpost.save()
+  res.redirect('/dashboard')
+})
 
 http.listen(process.env.PORT, () => {
   console.log("Server is running...");
