@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const User = require("./schemas/user");
+const Profile = require("./schemas/profile");
 const UserPost = require('./schemas/userpost')
 const path = require("path");
 
@@ -66,6 +67,14 @@ app.get("/register", (req, res) => {
 
 app.get("/login", (req, res) => {
   res.render("login");
+});
+
+app.get("/profile", (req, res) => {
+  res.render("profile");
+});
+
+app.get("/myprofile", (req, res) => {
+  res.render("myprofile");
 });
 
 //need to async await
@@ -125,11 +134,12 @@ app.post("/login-user", async (req, res) => {
     const result = await bcrypt.compare(password, user.password);
     if (result) {
       if (req.session) {
+        req.session.username = username;
         req.session.userid = user._id;
       }
       res.cookie("currentUser", username);
 
-      res.redirect("/chatroom");
+      res.redirect("/profile");
     } else {
       res.render("login", { errorMessage: "Invalid Login." });
     }
@@ -152,6 +162,74 @@ app.post('/add-post', async (req,res) => {
   res.redirect('/dashboard')
 })
 
+app.post('/add-post', async (req,res) => {
+  const postTitle = req.body.postTitle
+  const postBody = req.body.postBody
+  const postDate = req.body.postDate
+
+  const userpost = new UserPost({
+    postTitle: postTitle,
+    postBody: postBody,
+    postDate: postDate
+  })
+  await userpost.save()
+  res.redirect('/dashboard')
+})
+
+app.post("/profile", async (req, res) => {
+  const username = req.session.username;
+  const profilePicture = req.body.profilePicture;
+  const description = req.body.description;
+  const Artist1 = req.body.Artist1;
+  const Artist2 = req.body.Artist2;
+  const Artist3 = req.body.Artist3;
+  const Spotify = req.body.Spotify;
+  const SoundCloud = req.body.SoundCloud;
+
+  const profile = new Profile({
+    username: username,
+    profilePicture: profilePicture,
+    description: description,
+    Artist1: Artist1,
+    Artist2: Artist2,
+    Artist3: Artist3,
+    Spotify: Spotify,
+    SoundCloud: SoundCloud,
+  });
+  await profile.save();
+  res.render("myprofile", {
+    username: username,
+    profilePicture: profilePicture,
+    description: description,
+    Artist1: Artist1,
+    Artist2: Artist2,
+    Artist3: Artist3,
+    Spotify: Spotify,
+    SoundCloud: SoundCloud,
+  });
+});
+
+app.post("/myprofile", async (req, res) => {
+  const username = req.session.username;
+  const profilePicture = req.body.profilePicture;
+  const description = req.body.description;
+  const Artist1 = req.body.Artist1;
+  const Artist2 = req.body.Artist2;
+  const Artist3 = req.body.Artist3;
+  const Spotify = req.body.Spotify;
+  const SoundCloud = req.body.SoundCloud;
+
+  await Profile.find({
+    username: username,
+    profilePicture: profilePicture,
+    description: description,
+    Artist1: Artist1,
+    Artist2: Artist2,
+    Artist3: Artist3,
+    Spotify: Spotify,
+    SoundCloud: SoundCloud,
+  });
+});
 http.listen(process.env.PORT, () => {
   console.log("Server is running...");
 });
