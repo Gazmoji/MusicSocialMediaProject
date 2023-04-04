@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <script src="https://kit.fontawesome.com/7b5e4742d6.js" crossorigin="anonymous"></script>
+    <title>Create Profile</title>
+</head>
+<body>
+<form action='/profile' method='post'>
+
+<i class="fa-solid fa-headphones" style="color: #b5b71f;"></i>
+    <b style="color: #b5b71f;" id='logo'>SoundProof</b>
+
+
+   <li><input type='text' placeholder='Enter Your Profile Picture URL' name='profilePicture'></li>
+   
+   <h5>{{username}}</h5>
+   <input type='text' placeholder='Enter Your Description Here' name='description'></p>
+   
+   <ul>
+<li><input type='text' placeholder='Enter Your Top Artist' name='Artist1'></li>
+<li><input type='text' placeholder='Enter Another Top Artist' name='Artist2'></li>
+<li><input type='text' placeholder='Enter Another Top Artist' name='Artist3'></li>
+<li><input type='text' placeholder='Link Spotify Here' name='Spotify'></li>
+<li><input type='text' placeholder='Link SoundCloud Here' name='SoundCloud'></li>
+</ul>
+<button>Save Changes</button>
+</form>
+
+</body>
+
+</html>
