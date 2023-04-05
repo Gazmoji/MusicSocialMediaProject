@@ -13,3 +13,39 @@ body {
     font-family: "Courier New", Courier, monospace;
   }
   
+  .h4 {
+    font-family: "Courier New", Courier, monospace;
+  }
+
+
+  .dashboard {
+      width: 600px;
+      height: 100vh;
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: auto;
+      border-radius: 12px;
+      background: rgb(244, 226, 226);
+      position:relative
+  }
+
+  .blogPost {
+    width:auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:auto;
+    border-style: outset;
+    border-color: rgb(255, 248, 124);
+    background:wheat;
+    padding: 5px;
+    margin-top: 20px;
+  }
+
+  .newPostButton {
+    border:none;
+    background:none;
+    position:absolute; top:0; right:0;
+  }
