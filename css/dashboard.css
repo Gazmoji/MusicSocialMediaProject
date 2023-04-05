@@ -3,11 +3,49 @@ body {
   background-size: cover;
 }
 
-.navbar {
-  background-image: url("https://i.etsystatic.com/14994665/r/il/6bb7fc/2609034256/il_fullxfull.2609034256_eo08.jpg");
-  background-repeat: repeat;
-}
+  .navbar {
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAqJhlnelhh23e5Kv0P4fvArZpoIFghdZcznkNDLllyN21WfA2Kx1z0ivOb-6Qio93aTE&usqp=CAU");
+    background-repeat: repeat; */
+    background-color: rgba(215, 168, 207, 0.367)
+  }
+  
+  #logo {
+    font-family: "Courier New", Courier, monospace;
+  }
+  
+  .h4 {
+    font-family: "Courier New", Courier, monospace;
+  }
 
-#logo {
-  font-family: "Courier New", Courier, monospace;
-}
+
+  .dashboard {
+      width: 600px;
+      height: 100vh;
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: auto;
+      border-radius: 12px;
+      background: rgb(244, 226, 226);
+      position:relative
+  }
+
+  .blogPost {
+    width:auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:auto;
+    border-style: outset;
+    border-color: rgb(255, 248, 124);
+    background:wheat;
+    padding: 5px;
+    margin-top: 20px;
+  }
+
+  .newPostButton {
+    border:none;
+    background:none;
+    position:absolute; top:0; right:0;
+  }

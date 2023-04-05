@@ -14,6 +14,7 @@ const Profile = require("./schemas/profile");
 const UserPost = require("./schemas/userpost");
 const path = require("path");
 
+
 mongoose
   .connect(
     "mongodb+srv://soundproofapp:D3CEoDFJByG592MN@soundproof.gsxwsfd.mongodb.net/?retryWrites=true&w=majority"
@@ -65,6 +66,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+app.get("/newpost", (req, res) => {
+  res.render("newpost")
+})
+
 app.get("/login", (req, res) => {
   res.render("login");
 });
@@ -84,10 +89,11 @@ app.get("/myprofile", async (req, res) => {
   }
 });
 
-app.get("/dashboard", (req, res) => {
-  const userposts = UserPost.find({});
-  res.render("dashboard", { userposts: userposts });
-});
+//need to async await
+app.get('/dashboard', async (req, res) => {
+  const userposts =  await UserPost.find({})
+  res.render('dashboard', {userposts: userposts})
+})
 
 let chatMessages = [];
 let currentUser = "";
@@ -155,26 +161,14 @@ app.post("/login-user", async (req, res) => {
   }
 });
 
-app.post("/add-post", async (req, res) => {
-  const postTitle = req.body.postTitle;
-  const postBody = req.body.postBody;
-  const postDate = req.body.postDate;
+app.post('/add-post', async (req,res) => {
+  const username = req.session.username;
+  const postTitle = req.body.postTitle
+  const postBody = req.body.postBody
+  const postDate = req.body.postDate
 
   const userpost = new UserPost({
-    postTitle: postTitle,
-    postBody: postBody,
-    postDate: postDate,
-  });
-  await userpost.save();
-  res.redirect("/dashboard");
-});
-
-app.post("/add-post", async (req, res) => {
-  const postTitle = req.body.postTitle;
-  const postBody = req.body.postBody;
-  const postDate = req.body.postDate;
-
-  const userpost = new UserPost({
+    username: username,
     postTitle: postTitle,
     postBody: postBody,
     postDate: postDate,
