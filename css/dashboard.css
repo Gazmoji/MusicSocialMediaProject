@@ -1,15 +1,13 @@
 body {
-    background-image: url("https://image.slidesdocs.com/responsive-images/background/business-film-pastel-yellow-abstract-soft-powerpoint-background_6ba43e6878__960_540.jpg");
-    background-size: cover;
-  }
+  background-image: url("https://image.slidesdocs.com/responsive-images/background/business-film-pastel-yellow-abstract-soft-powerpoint-background_6ba43e6878__960_540.jpg");
+  background-size: cover;
+}
 
-  .navbar {
-    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAqJhlnelhh23e5Kv0P4fvArZpoIFghdZcznkNDLllyN21WfA2Kx1z0ivOb-6Qio93aTE&usqp=CAU");
-    background-repeat: repeat; */
-    background-color: rgba(215, 168, 207, 0.367)
-  }
-  
-  #logo {
-    font-family: "Courier New", Courier, monospace;
-  }
-  
+.navbar {
+  background-image: url("https://i.etsystatic.com/14994665/r/il/6bb7fc/2609034256/il_fullxfull.2609034256_eo08.jpg");
+  background-repeat: repeat;
+}
+
+#logo {
+  font-family: "Courier New", Courier, monospace;
+}

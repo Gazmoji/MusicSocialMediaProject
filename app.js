@@ -11,7 +11,7 @@ require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const User = require("./schemas/user");
 const Profile = require("./schemas/profile");
-const UserPost = require('./schemas/userpost')
+const UserPost = require("./schemas/userpost");
 const path = require("path");
 
 mongoose
@@ -73,18 +73,25 @@ app.get("/profile", (req, res) => {
   res.render("profile");
 });
 
-app.get("/myprofile", (req, res) => {
-  res.render("myprofile");
+app.get("/myprofile", async (req, res) => {
+  const username = req.session.username;
+  const profile = await Profile.findOne({ username: username });
+  if (profile) {
+    res.cookie("currentUserProfilePicture", profile.profilePicture);
+    res.render("myprofile", profile);
+  } else {
+    res.render("myprofile");
+  }
 });
 
-//need to async await
-app.get('/dashboard', (req, res) => {
-  const userposts =  UserPost.find({})
-  res.render('dashboard', {userposts: userposts})
-})
+app.get("/dashboard", (req, res) => {
+  const userposts = UserPost.find({});
+  res.render("dashboard", { userposts: userposts });
+});
 
 let chatMessages = [];
 let currentUser = "";
+let currentUserProfilePicture = "";
 let userCount = 0;
 
 app.post("/register-user", async (req, res) => {
@@ -148,33 +155,33 @@ app.post("/login-user", async (req, res) => {
   }
 });
 
-app.post('/add-post', async (req,res) => {
-  const postTitle = req.body.postTitle
-  const postBody = req.body.postBody
-  const postDate = req.body.postDate
+app.post("/add-post", async (req, res) => {
+  const postTitle = req.body.postTitle;
+  const postBody = req.body.postBody;
+  const postDate = req.body.postDate;
 
   const userpost = new UserPost({
     postTitle: postTitle,
     postBody: postBody,
-    postDate: postDate
-  })
-  await userpost.save()
-  res.redirect('/dashboard')
-})
+    postDate: postDate,
+  });
+  await userpost.save();
+  res.redirect("/dashboard");
+});
 
-app.post('/add-post', async (req,res) => {
-  const postTitle = req.body.postTitle
-  const postBody = req.body.postBody
-  const postDate = req.body.postDate
+app.post("/add-post", async (req, res) => {
+  const postTitle = req.body.postTitle;
+  const postBody = req.body.postBody;
+  const postDate = req.body.postDate;
 
   const userpost = new UserPost({
     postTitle: postTitle,
     postBody: postBody,
-    postDate: postDate
-  })
-  await userpost.save()
-  res.redirect('/dashboard')
-})
+    postDate: postDate,
+  });
+  await userpost.save();
+  res.redirect("/dashboard");
+});
 
 app.post("/profile", async (req, res) => {
   const username = req.session.username;
@@ -197,6 +204,7 @@ app.post("/profile", async (req, res) => {
     SoundCloud: SoundCloud,
   });
   await profile.save();
+  res.cookie("currentUserProfilePicture", profilePicture);
   res.render("myprofile", {
     username: username,
     profilePicture: profilePicture,
@@ -210,16 +218,7 @@ app.post("/profile", async (req, res) => {
 });
 
 app.post("/myprofile", async (req, res) => {
-  const username = req.session.username;
-  const profilePicture = req.body.profilePicture;
-  const description = req.body.description;
-  const Artist1 = req.body.Artist1;
-  const Artist2 = req.body.Artist2;
-  const Artist3 = req.body.Artist3;
-  const Spotify = req.body.Spotify;
-  const SoundCloud = req.body.SoundCloud;
-
-  await Profile.find({
+  const profile = await Profile.find({
     username: username,
     profilePicture: profilePicture,
     description: description,
@@ -229,7 +228,10 @@ app.post("/myprofile", async (req, res) => {
     Spotify: Spotify,
     SoundCloud: SoundCloud,
   });
+  res.cookie("currentUserProfilePicture", profilePicture);
+  res.render("myprofile", profile);
 });
+
 http.listen(process.env.PORT, () => {
   console.log("Server is running...");
 });

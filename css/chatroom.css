@@ -41,18 +41,7 @@ h1 {
   float: right;
   color: #aaa;
 }
-button {
-  padding: 10px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 10px;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #0069d9;
-}
+
 #chatborder {
   border-style: solid;
   background-color: #d2d899;
@@ -73,7 +62,7 @@ button:hover {
 }
 
 .navbar {
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAqJhlnelhh23e5Kv0P4fvArZpoIFghdZcznkNDLllyN21WfA2Kx1z0ivOb-6Qio93aTE&usqp=CAU");
+  background-image: url("https://i.etsystatic.com/14994665/r/il/6bb7fc/2609034256/il_fullxfull.2609034256_eo08.jpg");
   background-repeat: repeat;
 }
 
@@ -92,4 +81,8 @@ button:hover {
 #totalUsers {
   text-align: center;
   font-size: larger;
+}
+
+li img {
+  width: 50px;
 }
