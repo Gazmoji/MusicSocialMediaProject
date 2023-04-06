@@ -14,3 +14,16 @@ body {
   background-image: url("https://i.etsystatic.com/14994665/r/il/6bb7fc/2609034256/il_fullxfull.2609034256_eo08.jpg");
   background-repeat: repeat;
 }
+
+.card-img-top {
+  width: 285px;
+}
+
+#buttonholder {
+  margin-top: 35px;
+  margin-left: 50px;
+}
+
+#extraspace {
+  margin-left: 1350px;
+}

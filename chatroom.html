@@ -20,7 +20,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"
+        <a class="navbar-brand" href="dashboard"
           ><i class="fa-solid fa-headphones" style="color: #b5b71f"></i>
           <b style="color: #b5b71f" id="logo">SoundProof</b></a
         >
@@ -76,17 +76,6 @@
             </li>
             <li class="nav-item"></li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
@@ -104,7 +93,11 @@
         </ul>
       </div>
       <div id="sendText">
-        <input type="text" id="chatMessageTextBox" />
+        <input
+          type="text"
+          id="chatMessageTextBox"
+          placeholder="Enter Message Here"
+        />
         <button type="button" class="btn btn-warning" id="sendMessageButton">
           Send
         </button>

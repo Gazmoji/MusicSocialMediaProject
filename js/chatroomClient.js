@@ -42,6 +42,7 @@ sendMessageButton.addEventListener("click", () => {
     message: chatMessage,
     profilePicture: currentUserProfilePicture,
   });
+  chatMessageTextBox.value = "";
 });
 
 socket.on("General-Joined", (chatMessages) => {

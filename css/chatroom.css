@@ -15,7 +15,7 @@ h1 {
 
 .container {
   border: 2px solid #dedede;
-  background-color: #f1f1f1;
+  background-color: #e0e4c2;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
@@ -24,7 +24,7 @@ h1 {
 .container img {
   float: left;
   max-width: 60px;
-  width: 100%;
+  width: 50px;
   margin-right: 20px;
   border-radius: 50%;
 }
@@ -81,8 +81,4 @@ h1 {
 #totalUsers {
   text-align: center;
   font-size: larger;
-}
-
-li img {
-  width: 50px;
 }

@@ -25,3 +25,14 @@ p {
   background-image: url("https://i.etsystatic.com/14994665/r/il/6bb7fc/2609034256/il_fullxfull.2609034256_eo08.jpg");
   background-repeat: repeat;
 }
+
+#bottom {
+  margin-top: 150px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+#bottomimage {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
