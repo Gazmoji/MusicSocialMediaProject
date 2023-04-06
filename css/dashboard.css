@@ -19,7 +19,7 @@ body {
 
 .dashboard {
   width: 600px;
-  height: 100vh;
+  height: 100%;
   padding: 20px;
   justify-content: center;
   align-items: center;
@@ -51,7 +51,27 @@ body {
   right: 0;
 }
 
+.newPostButton:hover {
+  background-color: #fffdb6;
+}
+
+.newPostForm {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  transition: max-height 0.2s ease-out;
+  border-style: outset;
+  border-color: rgb(255, 248, 124);
+  background: wheat;
+}
+.newPostForm.active {
+  max-height: 500px; /* Set to the maximum height of your form */
+  
+}
+
 .navbar {
   background-image: url("https://i.etsystatic.com/14994665/r/il/6bb7fc/2609034256/il_fullxfull.2609034256_eo08.jpg");
   background-repeat: repeat;
 }
+
