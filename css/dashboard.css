@@ -20,7 +20,7 @@ body {
 
   .dashboard {
       width: 600px;
-      height: 100vh;
+      height: 100%;
       padding: 20px;
       justify-content: center;
       align-items: center;
@@ -48,4 +48,37 @@ body {
     border:none;
     background:none;
     position:absolute; top:0; right:0;
+  }
+
+ .newPostButton:hover {
+    background-color: #ffe865;
+  }
+
+  .newPostForm {
+  padding: 0 18px;
+  overflow: auto;
+  background-color: #f1f1f1;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-style: outset;
+  border-color: rgb(255, 248, 124);
+  background:wheat;
+  }
+
+  .newPostForm.active {
+    max-height: 500px; /* Set to the maximum height of your form */
+  }
+
+  #postText {
+    resize: none;
+    white-space: nowrap;
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+  }
+
+  #postText:focus {
+    white-space: normal;
   }

@@ -91,8 +91,16 @@ app.get("/myprofile", async (req, res) => {
 
 //need to async await
 app.get('/dashboard', async (req, res) => {
-  const userposts =  await UserPost.find({})
-  res.render('dashboard', {userposts: userposts})
+  
+  let userPosts =  await UserPost.find({})
+  userPosts = userPosts.map((post) => {
+    const month = post.postDate.getMonth() + 1 
+    const day = post.postDate.getDate() 
+    const year = post.postDate.getFullYear() 
+    post.displayPostDate = `${month}/${day}/${year}`
+    return post 
+  })
+  res.render('dashboard', {userposts: userPosts})
 })
 
 let chatMessages = [];
