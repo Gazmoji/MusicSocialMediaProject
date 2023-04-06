@@ -45,9 +45,20 @@
 </nav>
 
 <div class = "dashboard">
-<form method = "GET" action = "/newpost">
+{{! <form method = "GET" action = "/newpost"> }}
 <button id = "newPostButton" class ="newPostButton"><i class="fa-regular fa-square-plus fa-flip fa-xl" style="color: #000000;"></i></button>
-</form>
+{{! </form> }}
+{{! Start of trial }}
+<div class = "newPostForm">
+<form method = "POST" action = "/add-post">
+    <input type = "text" name = "postTitle" placeholder = "Enter City" required>
+    <textarea id="postText" name="postBody" rows="4" cols="50" placeholder = "What's the event?" required></textarea>
+    {{! <input type = "text" name = "postBody" id = "postText"> }}
+    <input type = "date" name = "postDate" required>
+    <button>POST</button>
+    </form>
+    </div>
+{{! end of trial }}
 <h4 class = "h4"><u>NEWEST POSTS</u></h4>
 {{#userposts}}
 <div class = "blogPost" id = "blogPost">
@@ -55,6 +66,7 @@
 <h6>{{username}}</h6>
 <h5>{{postTitle}}</h5>
 <p>{{postBody}}</p>
+<p>{{displayPostDate}}</p>
 </div>
 {{/userposts}}
 
