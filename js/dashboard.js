@@ -24,4 +24,3 @@ function scrollTextarea(event) {
     textarea.scrollTop -= event.deltaY;
   }
 
-

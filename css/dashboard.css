@@ -55,6 +55,14 @@ body {
   background-color: #fffdb6;
 }
 
+.chatRedirectButton {
+  border: none;
+  background: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .newPostForm {
   padding: 0 18px;
   max-height: 0;
@@ -75,3 +83,15 @@ body {
   background-repeat: repeat;
 }
 
+p {
+  font-family:Roboto;
+}
+
+h5 {
+  font-family: 'Bebas Neue';
+}
+
+.p1 {
+  font-family:Roboto;
+  margin-bottom: 0;
+}
