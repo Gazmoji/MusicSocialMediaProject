@@ -54,11 +54,11 @@ app.get("/chatMiley", (req, res) => {
 });
 
 app.get("/chatWeeknd", (req, res) => {
-  res.sendFile(path.join(__dirname, "/chatroom.html"));
+  res.sendFile(path.join(__dirname, "/chatroomWeeknd.html"));
 });
 
 app.get("/chatGecs", (req, res) => {
-  res.sendFile(path.join(__dirname, "/chatroom.html"));
+  res.sendFile(path.join(__dirname, "/chatroomGecs.html"));
 });
 
 app.get("/register", (req, res) => {
@@ -89,18 +89,17 @@ app.get("/myprofile", async (req, res) => {
 });
 
 //need to async await
-app.get('/dashboard', async (req, res) => {
-  
-  let userPosts =  await UserPost.find({})
+app.get("/dashboard", async (req, res) => {
+  let userPosts = await UserPost.find({});
   userPosts = userPosts.map((post) => {
-    const month = post.postDate.getMonth() + 1 
-    const day = post.postDate.getDate() 
-    const year = post.postDate.getFullYear() 
-    post.displayPostDate = `${month}/${day}/${year}`
-    return post 
-  })
-  res.render('dashboard', {userposts: userPosts})
-})
+    const month = post.postDate.getMonth() + 1;
+    const day = post.postDate.getDate();
+    const year = post.postDate.getFullYear();
+    post.displayPostDate = `${month}/${day}/${year}`;
+    return post;
+  });
+  res.render("dashboard", { userposts: userPosts });
+});
 
 let chatMessages = [];
 let currentUser = "";
