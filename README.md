@@ -7,7 +7,7 @@
     * **Features on the app:**
      The app is featured with a register and login functionality as well as a clear way to navigate throughout the various pages and chatrooms/blog posts created by other users.
      
- ## Live link: 
+ ## Live link: https://soundproof-demo.onrender.com
       
       
 ## Featured programs: 
