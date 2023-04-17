@@ -61,6 +61,10 @@ app.get("/chatGecs", (req, res) => {
   res.sendFile(path.join(__dirname, "/chatroomGecs.html"));
 });
 
+app.get("/", (req, res) => {
+  res.redirect("/register");
+});
+
 app.get("/register", (req, res) => {
   res.render("register");
 });
