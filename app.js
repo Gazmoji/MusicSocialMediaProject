@@ -15,9 +15,7 @@ const UserPost = require("./schemas/userpost");
 const path = require("path");
 
 mongoose
-  .connect(
-    "mongodb+srv://soundproofapp:D3CEoDFJByG592MN@soundproof.gsxwsfd.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_DB_STRING)
   .then(() => {
     console.log("DB connected");
   })
